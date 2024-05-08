@@ -1,0 +1,74 @@
+---
+title: "State-Space Time Series Models and the Kalman Filter"
+author: "Casey Ross"
+format: beamer
+editor: visual
+---
+
+## Introduction
+
+### Time Series Analysis
+
+-   Helps us to understand dynamics of how a variable of interest might change over time
+
+-   Studies trends, cycles, seasonal patterns or other relationships that exist in data collected over regular time intervals
+
+    -   Some models allow flexibility to examine data over an irregular time period
+
+### State Space Models
+
+-   Special class of time series model to represent dynamic systems
+
+-   Relates an unobserved variable of interest (state vector) to a "noisy" observed variable that is assumed to be measured with some error
+
+-   Both the time series of unobserved variables and the parameters defining this relationship are estimated via an algorithm called the Kalman Filter
+
+## Mathematical Model
+
+### State Equation
+
+$$
+\alpha_t = c + \mathrm{T}\alpha_{t-1} + \eta_t
+$$
+
+-   $\alpha_t$ is an $m \times 1$ vector of unobserved variables at time *t*: $t = 1, 2, …,T$
+
+-   $c$ is an $m \times 1$ vector of constants
+
+-   $\mathrm{T}$ is an $m \times m$ parameter matrix
+
+-   $\eta_t$ is a residual, or error term, assumed \~$~ N(0,Q)$
+
+## Mathematical Model (cont.)
+
+### Observation Equation
+
+$$
+y_t = d + Z\alpha_t + e_t
+$$
+
+-   $y_t$ is an $N \times 1$ vector of unobserved variables at time *t*: $t = 1, 2, …,T$
+
+-   $d$ is an $N \times 1$ vector of constants
+
+-   $Z$ is an $N \times m$ parameter matrix (measurement or observation matrix)
+
+-   $e_t$ is a residual, or error term, assumed \~$~ N(0,H)$
+
+## Application: GDPplus
+
+### Motivation
+
+The Bureau of Economic Analysis (BEA), a component of the U.S. Department of Commerce, produces two measurements of real economic activity: Gross Domestic Product (GDP) and Gross Domestic Income (GDI).
+
+GDP is expenditure-based
+
+-   Consumption + Investment + Government Spending + (Exports - Imports)
+
+GDI is income-based
+
+-   Compensation of employees +
+
+    Taxes on production and imports less subsidies +
+
+    Gross Operating Surplus (GOS)
